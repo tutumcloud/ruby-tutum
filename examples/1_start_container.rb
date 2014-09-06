@@ -20,14 +20,19 @@ container = tutum.containers.create({
 
 uuid = container.parsed_response['uuid']
 
-tutum.containers.start(uuid)
+puts container.parsed_response.inspect
+start = tutum.containers.start(uuid)
+puts start.inspect
 
 # Check until status == running
 state = nil
 while(state != "Running") do
   sleep 5
   puts "Checking container state"
-  state = tutum.containers.get(uuid)["state"]
+  get_response = tutum.containers.get(uuid)
+  state = get_response["state"]
+  puts get_response.inspect
+
   puts state
 end
 
