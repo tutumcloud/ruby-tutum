@@ -1,0 +1,2 @@
+class TutumImages < TutumApi
+end

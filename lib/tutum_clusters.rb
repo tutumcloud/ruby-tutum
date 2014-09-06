@@ -1,0 +1,2 @@
+class TutumClusters < TutumApi
+end
