@@ -4,7 +4,7 @@ class TutumClusters < TutumApi
   end
 
   def list(params)
-    get(list_url, params)
+    http_get(list_url, params)
   end
 
   def create_url
@@ -12,7 +12,7 @@ class TutumClusters < TutumApi
   end
 
   def create(params)
-    post(create_url, params)
+    http_post(create_url, params)
   end
 
   def get_url(uuid)
@@ -20,7 +20,7 @@ class TutumClusters < TutumApi
   end
 
   def get(uuid)
-    get(get_url(uuid))
+    http_get(get_url(uuid))
   end
 
   def start_url(uuid)
@@ -28,7 +28,7 @@ class TutumClusters < TutumApi
   end
 
   def start(uuid)
-    post(start_url(uuid))
+    http_post(start_url(uuid))
   end
 
   def stop_url(uuid)
@@ -36,7 +36,7 @@ class TutumClusters < TutumApi
   end
 
   def stop(uuid)
-    post(stop_url(uuid))
+    http_post(stop_url(uuid))
   end
 
   def update_url(uuid)
@@ -44,7 +44,7 @@ class TutumClusters < TutumApi
   end
   
   def update(uuid, params)
-    patch(update_url(uuid), params)
+    http_patch(update_url(uuid), params)
   end
 
   def redeploy_url(uuid)
@@ -52,7 +52,7 @@ class TutumClusters < TutumApi
   end
   
   def redeploy(uuid, params)
-    post(redeploy_url(uuid), params)
+    http_post(redeploy_url(uuid), params)
   end
 
   def delete_url(uuid)
@@ -60,7 +60,7 @@ class TutumClusters < TutumApi
   end
 
   def delete(uuid)
-    delete(delete_url(uuid))
+    http_delete(delete_url(uuid))
   end
 
 end

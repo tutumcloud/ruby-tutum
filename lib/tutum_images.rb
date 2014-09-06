@@ -4,7 +4,7 @@ class TutumImages < TutumApi
   end
 
   def list(params)
-    get(list_url, params)
+    http_get(list_url, params)
   end
 
   def add_url
@@ -12,7 +12,7 @@ class TutumImages < TutumApi
   end
 
   def add(name, params)
-    post(add_url, params.merge({:name => name}))
+    http_post(add_url, params.merge({:name => name}))
   end
 
   def get_url(name)
@@ -20,7 +20,7 @@ class TutumImages < TutumApi
   end
 
   def get(name)
-    get(get_url(name))
+    http_get(get_url(name))
   end
 
   def update_url(name)
@@ -28,7 +28,7 @@ class TutumImages < TutumApi
   end
   
   def update(name, params)
-    patch(update_url(name), params)
+    http_patch(update_url(name), params)
   end
 
   def delete_url(name)
@@ -36,7 +36,7 @@ class TutumImages < TutumApi
   end
 
   def delete(name)
-    delete(delete_url(name))
+    http_delete(delete_url(name))
   end
 
 

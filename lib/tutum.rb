@@ -13,7 +13,8 @@ class Tutum
   def headers
     {
       "Authorization" => "ApiKey #{@username}:#{@api_key}",
-      "Accept" => "application/json"
+      "Accept" => "application/json",
+      "Content-Type" => "application/json"
     }
   end
 

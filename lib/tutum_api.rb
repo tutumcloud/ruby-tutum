@@ -1,3 +1,4 @@
+require 'httparty'
 class TutumApi
   attr_reader :headers
   BASE_API_PATH = "https://app.tutum.co/api"
@@ -12,16 +13,16 @@ class TutumApi
     BASE_API_PATH+"/"+API_VERSION + path
   end
 
-  def get(path, args={})
-    HttpParty.get(api_path(path), http_headers.merge({ :query => args }))
+  def http_get(path, args={})
+    HTTParty.get(api_path(path), http_headers.merge({ :query => args }))
   end
-  def post(path, args={})
-    HttpParty.post(api_path(path), http_headers.merge({ :body => args }))
+  def http_post(path, args={})
+    HTTParty.post(api_path(path), http_headers.merge({ :body => args.to_json }))
   end
-  def patch(path, args={})
-    HttpParty.patch(api_path(path), http_headers.merge({ :body => args }))
+  def http_patch(path, args={})
+    HTTParty.patch(api_path(path), http_headers.merge({ :body => args.to_json }))
   end
-  def delete(path, args={})
-    HttpParty.delete(api_path(path), http_headers.merge({ :query => args }))
+  def http_delete(path, args={})
+    HTTParty.delete(api_path(path), http_headers.merge({ :query => args }))
   end
 end
