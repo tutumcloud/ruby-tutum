@@ -14,7 +14,12 @@ Ruby API for the [https://docs.tutum.co/reference/api/](tutum) HTTP API.  Tutum 
 ### Create a new container
 
 ```ruby
-  tutum.containers.create(:image => "tutum/hello-world", :name => "my-awesome-app", :container_size => "XS", :web_public_dns => "awesome-app.example.com")
+  tutum.containers.create({
+    :image => "tutum/hello-world", 
+    :name => "my-awesome-app", 
+    :container_size => "XS", 
+    :web_public_dns => "awesome-app.example.com"
+  })
 ```
 
 ### List all containers
