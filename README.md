@@ -93,7 +93,7 @@ Ruby API for the [https://docs.tutum.co/reference/api/](tutum) HTTP API.  Tutum 
 ### Update a cluster
 
 ```ruby
-  tutum.clusters.update(:target_num_containers => 3)
+  tutum.clusters.update(CLUSTER_UUID, :target_num_containers => 3)
 ```
 ### Start a cluster
 
