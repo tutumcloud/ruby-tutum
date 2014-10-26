@@ -15,7 +15,7 @@ Ruby API for the [https://docs.tutum.co/reference/api/](tutum) HTTP API.  Tutum 
 
 ```ruby
   tutum.containers.create({
-    :image => "tutum/hello-world", 
+    :image_name => "tutum/hello-world", 
     :name => "my-awesome-app", 
     :container_size => "XS", 
     :web_public_dns => "awesome-app.example.com"
@@ -46,7 +46,7 @@ Ruby API for the [https://docs.tutum.co/reference/api/](tutum) HTTP API.  Tutum 
   tutum.containers.stop(CONTAINER_UUID)
 ```
 
-### Get logs for a container
+### Get the logs of a container
 
 ```ruby
   tutum.containers.logs(CONTAINER_UUID)
@@ -64,100 +64,199 @@ Ruby API for the [https://docs.tutum.co/reference/api/](tutum) HTTP API.  Tutum 
   tutum.containers.delete(CONTAINER_UUID)
 ```
 
-## Clusters
+## Actions
 
-### List all clusters
+### List all actions
 
-```ruby
-  tutum.clusters.list({})
+```
+  tutum.actions.list
 ```
 
-### Get cluster details
+### Get an action by UUID
 
-```ruby
-  tutum.clusters.get(CLUSTER_UUID)
 ```
-### Create a new cluster
-
-```ruby
-  tutum.clusters.create(
-    {
-        "image": "tutum/hello-world",
-        "name": "my-awesome-app",
-        "target_num_containers": 2,
-        "container_size": "XS",
-        "web_public_dns": "awesome-app.example.com"
-    }
-  )
-```
-### Update a cluster
-
-```ruby
-  tutum.clusters.update(CLUSTER_UUID, :target_num_containers => 3)
-```
-### Start a cluster
-
-```ruby
-  tutum.clusters.start(CLUSTER_UUID)
-```
-### Stop a cluster
-
-```ruby
-  tutum.clusters.stop(CLUSTER_UUID)
-```
-### Redeploy a cluster
-
-```ruby
-  tutum.clusters.redeploy(CLUSTER_UUID, {})
-```
-### Terminate a cluster
-
-```ruby
-  tutum.clusters.terminate(CLUSTER_UUID)
+  action = tutum.actions.get(ACTION_UUID)
 ```
 
-## Images
 
-### List all images
+## Providers
 
-```ruby
-  tutum.images.list({})
+### List all providers
+
+```
+  tutum.providers.list
 ```
 
-### Get image details
+### Get a provider
 
-```ruby
-  tutum.images.get("tutum/lamp")
+```
+  tutum.providers.get(PROVIDER_NAME)
 ```
 
-### Add a new private image
+## Regions
 
-```ruby
-  tutum.images.add(
-    "quay.io/user/my-private-image",
-    {
-        "username": "user+read",
-        "password": "SHJW0SAOQ2BFBZVEVQH98SOL6V7UPQ0PH2VNKRVMMXR6T8Q43AHR88242FRPPTPG"
-    }
-  )
+### List all regions
+
+```
+  tutum.regions.list
 ```
 
-### Update a private image
+### Get an individual region
 
-```ruby
-  tutum.images.update( 
-    "quay.io/user/my-private-image", 
-    {
-        "description": "Awesome web application, containerized"
-    }
-  )
+```
+  tutum.regions.get(REGION_NAME)
 ```
 
-### Delete a private image
+## Availability Zones
 
-```ruby
-  tutum.images.delete("quay.io/user/my-private-image")
+TODO: Not implemented on tutum yet
+
+## Node Types
+
+### List all node types
+
 ```
+  tutum.node_types.list
+```
+
+### Get an individual node type
+```
+  node_type = tutum.node_types.get("digitalocean/1gb")
+```
+
+## Node Clusters
+
+### List all node clusters
+
+```
+  node_clusters = tutum.node_clusters.list
+```
+
+### Create a node cluster
+
+```
+  region = tutum.regions.get("digitalocean/lon1")
+  node_type = tutum.node_types.get("digitalocean/1gb")
+  number_of_nodes = 1
+  node_cluster = tutum.node_cluster.create( "my_cluster", node_type, region, number_of_nodes)
+```
+
+### Get a node cluster
+
+```
+  service = tutum.node_clusters.get(NODE_CLUSTER_UUID)
+```
+
+### Deploy a node cluster
+
+```
+  tutum.node_clusters.deploy(NODE_CLUSTER_UUID)
+```
+
+### Update an existing node cluster
+```
+  tutum.node_clusters.update(NODE_CLUSTER_UUID, :target_num_nodes => 3)
+```
+
+### Terminate a node cluster
+```
+  tutum.node_clusters.delete!(NODE_CLUSTER_UUID)
+```
+
+## Nodes
+
+### List all nodes
+
+```
+tutum.nodes.list
+```
+
+### Get an existing node
+
+```
+tutum.nodes.get(NODE_UUID)
+```
+
+### Deploy a node
+
+```
+tutum.nodes.deploy(NODE_UUID)
+```
+
+### Terminate a node
+
+```
+tutum.nodes.terminate(NODE_UUID)
+```
+
+## Services
+
+### List all services
+```
+options = {}
+tutum.services.list(options)
+```
+
+### Create a new service
+
+```
+service = tutum.services.create('tutum/hello-world, :name => "my-new-app", :target_num_containers => 1)
+```
+
+### Get an existing service
+
+```
+service_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+service = tutum.services.get(service_uuid)
+```
+
+### Get the logs of a service
+
+```
+service_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.services.logs(service_uuid)
+```
+
+### Update an existing service
+
+```
+service_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.services.update(service_uuid, :target_num_containers => 3)
+```
+
+### Start a service
+
+```
+service_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.services.start(service_uuid)
+```
+
+### Stop a service
+```
+service_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.services.stop(service_uuid)
+```
+
+
+### Redeploy a service
+```
+service_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.services.redeploy(service_uuid)
+```
+
+### Terminate a service
+```
+service_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.services.terminate(service_uuid)
+```
+
 
 ### About
 
