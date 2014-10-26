@@ -1,7 +1,7 @@
 require 'httparty'
 class TutumApi
   attr_reader :headers
-  BASE_API_PATH = "https://app.tutum.co/api"
+  BASE_API_PATH = "https://dashboard.tutum.co/api"
   API_VERSION = "v1"
   def initialize(headers)
     @headers = headers
