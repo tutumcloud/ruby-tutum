@@ -1,8 +1,8 @@
 require_relative './spec_helper'
 
-describe TutumClusters do
+describe TutumNodeClusters do
   subject do
-    TutumClusters.new({})
+    TutumNodeClusters.new({})
   end
   it "can list" do
     expect(subject.list_url()).to eq("/application/")
@@ -16,16 +16,10 @@ describe TutumClusters do
   it "can update" do
     expect(subject.update_url("TEST")).to eq("/application/TEST/")
   end
-  it "can start" do
-    expect(subject.start_url("TEST")).to eq("/application/TEST/start/")
-  end
-  it "can stop" do
-    expect(subject.stop_url("TEST")).to eq("/application/TEST/stop/")
-  end
-  it "can redeploy" do
-    expect(subject.redeploy_url("TEST")).to eq("/application/TEST/redeploy/")
+  it "can deploy" do
+    expect(subject.deploy_url("TEST")).to eq("/application/TEST/deploy/")
   end
   it "can terminate" do
-    expect(subject.delete_url("TEST")).to eq("/application/TEST/")
+    expect(subject.terminate_url("TEST")).to eq("/application/TEST/")
   end
 end

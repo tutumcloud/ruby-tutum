@@ -25,43 +25,50 @@ Ruby API for the [https://docs.tutum.co/reference/api/](tutum) HTTP API.  Tutum 
 ### List all containers
 
 ```ruby
-  tutum.containers.list({})
+  options = {}
+  tutum.containers.list(options)
 ```
 
 ### Get container details
 
 ```ruby
-  tutum.containers.get(CONTAINER_UUID)
+  container_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+  tutum.containers.get(container_uuid)
 ```
 
 ### Start a container
 
 ```ruby
-  tutum.containers.start(CONTAINER_UUID)
+  container_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+  tutum.containers.start(container_uuid)
 ```
 
 ### Stop a container
 
 ```ruby
-  tutum.containers.stop(CONTAINER_UUID)
+  container_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+  tutum.containers.stop(container_uuid)
 ```
 
 ### Get the logs of a container
 
 ```ruby
-  tutum.containers.logs(CONTAINER_UUID)
+  container_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+  tutum.containers.logs(container_uuid)
 ```
 
 ### Redeploy a container
 
 ```ruby
-  tutum.containers.redeploy(CONTAINER_UUID, {})
+  container_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+  tutum.containers.redeploy(container_uuid, {})
 ```
 
 ### Terminate a container
 
 ```ruby
-  tutum.containers.delete(CONTAINER_UUID)
+  container_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+  tutum.containers.delete(container_uuid)
 ```
 
 ## Actions

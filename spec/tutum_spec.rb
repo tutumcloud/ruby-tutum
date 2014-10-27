@@ -13,8 +13,8 @@ describe Tutum do
   it "has images" do
     expect(subject.images.class).to eq(TutumImages)
   end
-  it "has clusters" do
-    expect(subject.clusters.class).to eq(TutumClusters)
+  it "has node_clusters" do
+    expect(subject.node_clusters.class).to eq(TutumNodeClusters)
   end
   it "has a username and apikey" do
     expect(subject.username).to eq(TEST_USERNAME)

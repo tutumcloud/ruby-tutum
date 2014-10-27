@@ -7,14 +7,6 @@ class TutumContainers < TutumApi
     http_get(list_url, params)
   end
 
-  def create_url
-    "/container/"
-  end
-
-  def create(params)
-    http_post(create_url, params)
-  end
-
   def get_url(uuid)
     "/container/#{uuid}/"
   end
@@ -47,19 +39,11 @@ class TutumContainers < TutumApi
     http_get(logs_url(uuid))
   end
 
-  def redeploy_url(uuid)
-    "/container/#{uuid}/redeploy/"
-  end
-  
-  def redeploy(uuid, params)
-    http_post(redeploy_url(uuid), params)
-  end
-
-  def delete_url(uuid)
+  def terminate_url(uuid)
     "/container/#{uuid}/"
   end
 
-  def delete(uuid)
-    http_delete(delete_url(uuid))
+  def terminate(uuid)
+    http_terminate(terminate_url(uuid))
   end
 end

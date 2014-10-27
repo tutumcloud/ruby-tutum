@@ -1,4 +1,4 @@
-class TutumClusters < TutumApi
+class TutumNodeClusters < TutumApi
   def list_url
     "/application/"
   end
@@ -23,22 +23,6 @@ class TutumClusters < TutumApi
     http_get(get_url(uuid))
   end
 
-  def start_url(uuid)
-    "/application/#{uuid}/start/"
-  end
-
-  def start(uuid)
-    http_post(start_url(uuid))
-  end
-
-  def stop_url(uuid)
-    "/application/#{uuid}/stop/"
-  end
-
-  def stop(uuid)
-    http_post(stop_url(uuid))
-  end
-
   def update_url(uuid)
     "/application/#{uuid}/"
   end
@@ -47,20 +31,20 @@ class TutumClusters < TutumApi
     http_patch(update_url(uuid), params)
   end
 
-  def redeploy_url(uuid)
-    "/application/#{uuid}/redeploy/"
+  def deploy_url(uuid)
+    "/application/#{uuid}/deploy/"
   end
   
-  def redeploy(uuid, params)
-    http_post(redeploy_url(uuid), params)
+  def deploy(uuid, params)
+    http_post(deploy_url(uuid), params)
   end
 
-  def delete_url(uuid)
+  def terminate_url(uuid)
     "/application/#{uuid}/"
   end
 
-  def delete(uuid)
-    http_delete(delete_url(uuid))
+  def terminate(uuid)
+    http_delete(terminate_url(uuid))
   end
 
 end
