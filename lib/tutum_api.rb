@@ -14,30 +14,31 @@ class TutumApi
   end
 
 
-  def expect_200(path, &block)
+  def expect_20x(path, &block)
     response = block.call
-    if(response.code != 200)
+    if(response.code/10 != 20)
       raise TutumError.new("#{response.code} received for API call to #{path}")
     end
+    response
   end
 
   def http_get(path, args={})
-    expect_200(path) do 
+    expect_20x(path) do 
       HTTParty.get(api_path(path), http_headers.merge({ :query => args }))
     end
   end
   def http_post(path, args={})
-    expect_200(path) do 
+    expect_20x(path) do 
       HTTParty.post(api_path(path), http_headers.merge({ :body => args.to_json }))
     end
   end
   def http_patch(path, args={})
-    expect_200(path) do 
+    expect_20x(path) do 
       HTTParty.patch(api_path(path), http_headers.merge({ :body => args.to_json }))
     end
   end
   def http_delete(path, args={})
-    expect_200(path) do 
+    expect_20x(path) do 
       HTTParty.delete(api_path(path), http_headers.merge({ :query => args }))
     end
   end
