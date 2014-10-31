@@ -1,0 +1,2 @@
+class TutumError < StandardError
+end

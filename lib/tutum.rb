@@ -11,6 +11,7 @@ require_relative './tutum_nodes'
 require_relative './tutum_providers'
 require_relative './tutum_regions'
 require_relative './tutum_services'
+require_relative './tutum_error'
 
 class Tutum
   attr_reader :username, :api_key
