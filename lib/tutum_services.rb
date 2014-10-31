@@ -43,16 +43,16 @@ class TutumServices < TutumApi
     "/service/#{uuid}/start/"
   end
   
-  def start(uuid, params)
-    http_post(start_url(uuid), params)
+  def start(uuid)
+    http_post(start_url(uuid))
   end
 
   def stop_url(uuid)
     "/service/#{uuid}/stop/"
   end
   
-  def stop(uuid, params)
-    http_post(stop_url(uuid), params)
+  def stop(uuid)
+    http_post(stop_url(uuid))
   end
 
  
