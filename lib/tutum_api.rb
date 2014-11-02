@@ -17,7 +17,11 @@ class TutumApi
   def expect_20x(path, &block)
     response = block.call
     if(response.code/10 != 20)
-      raise TutumError.new("#{response.code} received for API call to #{path}")
+      msg = response.inspect
+      if(response.parsed_response)
+        msg = response.parsed_response.inspect
+      end
+      raise TutumError.new("#{response.code} received for API call to #{path}: #{msg}")
     end
     response
   end

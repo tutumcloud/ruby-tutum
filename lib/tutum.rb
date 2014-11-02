@@ -45,7 +45,7 @@ class Tutum
   end
 
   def node_types
-    @node_types ||= TutumNOdeTypes.new(headers)
+    @node_types ||= TutumNodeTypes.new(headers)
   end
 
   def nodes

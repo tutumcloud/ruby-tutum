@@ -1,14 +1,14 @@
 class TutumNodeTypes < TutumApi
   def list_url
-    "/node_type/"
+    "/nodetype/"
   end
 
-  def list(params)
-    http_get(list_url, params)
+  def list
+    http_get(list_url)
   end
 
   def get_url(uuid)
-    "/node_type/#{uuid}/"
+    "/nodetype/#{uuid}/"
   end
 
   def get(uuid)
