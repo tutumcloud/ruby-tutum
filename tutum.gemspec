@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'tutum'
-  s.version     = '0.2'
+  s.version     = '0.2.1'
   s.date        = '2014-08-06'
   s.summary     = "Ruby interface for the tutum PaaS API."
   s.description = "Provides HTTP functionality wrapped in a nice ruby interface."
