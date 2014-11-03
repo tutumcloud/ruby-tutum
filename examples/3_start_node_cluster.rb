@@ -8,9 +8,9 @@ tutum = Tutum.new(ENV["TUTUM_USER"], ENV["TUTUM_APIKEY"])
 
 node_types = tutum.node_types.list
 
+puts "Available node types: "
 objects = node_types.parsed_response["objects"]
 objects.each do |type|
-  puts type.inspect
   if(type["available"])
     puts "#{type["resource_uri"]} - cpu #{type["cpu"]}, memory #{type["memory"]}}"
   else
@@ -26,6 +26,9 @@ puts "-----","Creating cluster '#{name}' with  #{region} and type #{type}", "---
 create_response = tutum.node_clusters.create({ name: name, node_type: type, region: region, target_num_nodes: 1})
 
 uuid = create_response.parsed_response["uuid"]
+deploy_response = tutum.node_clusters.deploy(uuid)
+
+puts "Created node cluster #{uuid}"
 started = false
 
 while(!started) do
@@ -33,9 +36,9 @@ while(!started) do
   state = node_cluster.parsed_response["state"]
   puts "Node cluster state #{state}"
   sleep 5
-  started = (state == "Running")
+  started = (state == "Deployed")
 end
 
 tutum.node_clusters.terminate(uuid)
-puts "#{uuid} terminated.  Example finished."
+puts "Node cluster #{uuid} terminated."
 
