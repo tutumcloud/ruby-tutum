@@ -274,7 +274,14 @@ tutum.services.terminate(service_uuid)
 ```
 ##Testing
 
-Testing locally is simple. Just bundle and run the tests.
+To test locally, you must set two environmental variables.
+
+```
+$ export TUTUM_USERNAME=your_username
+$ export TUTUM_API_KEY=your_api_key
+```
+
+Then, bundle and run the tests.
 
 ```
 $ bundle
