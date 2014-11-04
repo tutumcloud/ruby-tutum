@@ -2,11 +2,19 @@
 
 Ruby API for the [https://docs.tutum.co/reference/api/](tutum) HTTP API.  Tutum is a docker host PaaS.  See the tutum documentation for a full list of parameters for each method call.
 
+##Installation
+
+```
+$ gem install tutum-api
+```
+
 ## Authentication
+
+In order to make requests, you must secure your username and [API key](https://dashboard.tutum.co/account/).
 
 ```ruby
   require 'tutum'
-  tutum = Tutum.new(TUTUM_USERNAME, API_KEY)
+  session = Tutum.new(username, api_key)
 ```
 
 ## Containers
@@ -263,7 +271,14 @@ service_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
 
 tutum.services.terminate(service_uuid)
 ```
+##Testing
 
+Testing locally is simple. Just bundle and run the tests.
+
+```
+$ bundle
+$ rake
+```
 
 ### About
 
