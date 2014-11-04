@@ -3,8 +3,8 @@ class TutumImages < TutumApi
     "/image/"
   end
 
-  def list(params)
-    http_get(list_url, params)
+  def list
+    http_get(list_url)
   end
 
   def add_url

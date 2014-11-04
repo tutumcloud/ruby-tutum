@@ -1,2 +1,0 @@
-class TutumError < StandardError
-end

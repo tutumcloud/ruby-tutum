@@ -1,12 +1,23 @@
+[![Build Status](https://travis-ci.org/tutumcloud/ruby-tutum.svg)](https://travis-ci.org/tutumcloud/ruby-tutum)
+[![Gem Version](https://badge.fury.io/rb/ruby-tutum.svg)](http://badge.fury.io/rb/ruby-tutum)
+
 ## Introduction
 
-Ruby API for the [https://docs.tutum.co/reference/api/](tutum) HTTP API.  Tutum is a docker host PaaS.  See the tutum documentation for a full list of parameters for each method call.
+This library implements [Tutum's API](https://docs.tutum.co/v2/api/). Tutum is a docker host PaaS.  See the tutum documentation for a full list of parameters for each method call.
+
+##Installation
+
+```
+$ gem install tutum-api
+```
 
 ## Authentication
 
+In order to make requests, you must secure your username and [API key](https://dashboard.tutum.co/account/).
+
 ```ruby
   require 'tutum'
-  tutum = Tutum.new(TUTUM_USERNAME, API_KEY)
+  session = Tutum.new(username, api_key)
 ```
 
 ## Containers
@@ -25,8 +36,7 @@ Ruby API for the [https://docs.tutum.co/reference/api/](tutum) HTTP API.  Tutum 
 ### List all containers
 
 ```ruby
-  options = {}
-  tutum.containers.list(options)
+  tutum.containers.list
 ```
 
 ### Get container details
@@ -200,8 +210,7 @@ tutum.nodes.terminate(NODE_UUID)
 
 ### List all services
 ```
-options = {}
-tutum.services.list(options)
+tutum.services.list
 ```
 
 ### Create a new service
@@ -263,7 +272,21 @@ service_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
 
 tutum.services.terminate(service_uuid)
 ```
+##Testing
 
+To test locally, you must set two environmental variables.
+
+```
+$ export TUTUM_USERNAME=your_username
+$ export TUTUM_API_KEY=your_api_key
+```
+
+Then, bundle and run the tests.
+
+```
+$ bundle
+$ rake
+```
 
 ### About
 
