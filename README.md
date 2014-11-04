@@ -1,6 +1,9 @@
+[![Build Status](https://travis-ci.org/tutumcloud/ruby-tutum.svg)](https://travis-ci.org/tutumcloud/ruby-tutum)
+[![Gem Version](https://badge.fury.io/rb/ruby-tutum.svg)](http://badge.fury.io/rb/ruby-tutum)
+
 ## Introduction
 
-Ruby API for the [https://docs.tutum.co/reference/api/](tutum) HTTP API.  Tutum is a docker host PaaS.  See the tutum documentation for a full list of parameters for each method call.
+This library implements [Tutum's API](https://docs.tutum.co/v2/api/). Tutum is a docker host PaaS.  See the tutum documentation for a full list of parameters for each method call.
 
 ##Installation
 
@@ -33,8 +36,7 @@ In order to make requests, you must secure your username and [API key](https://d
 ### List all containers
 
 ```ruby
-  options = {}
-  tutum.containers.list(options)
+  tutum.containers.list
 ```
 
 ### Get container details
@@ -208,8 +210,7 @@ tutum.nodes.terminate(NODE_UUID)
 
 ### List all services
 ```
-options = {}
-tutum.services.list(options)
+tutum.services.list
 ```
 
 ### Create a new service
