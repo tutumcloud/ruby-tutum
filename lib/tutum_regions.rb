@@ -3,8 +3,8 @@ class TutumRegions < TutumApi
     "/region/"
   end
 
-  def list(params)
-    http_get(list_url, params)
+  def list
+    http_get(list_url)
   end
 
   def get_url(uuid)
