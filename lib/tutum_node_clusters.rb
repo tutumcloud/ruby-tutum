@@ -26,7 +26,7 @@ class TutumNodeClusters < TutumApi
   def update_url(uuid)
     "/nodecluster/#{uuid}/"
   end
-  
+
   def update(uuid, params)
     http_patch(update_url(uuid), params)
   end
@@ -34,7 +34,7 @@ class TutumNodeClusters < TutumApi
   def deploy_url(uuid)
     "/nodecluster/#{uuid}/deploy/"
   end
-  
+
   def deploy(uuid)
     http_post(deploy_url(uuid))
   end
@@ -46,5 +46,5 @@ class TutumNodeClusters < TutumApi
   def terminate(uuid)
     http_delete(terminate_url(uuid))
   end
-
 end
+
