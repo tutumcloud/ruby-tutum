@@ -14,5 +14,4 @@ class TutumRegions < TutumApi
   def get(uuid)
     http_get(get_url(uuid))
   end
-
 end

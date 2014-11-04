@@ -34,7 +34,7 @@ class TutumServices < TutumApi
   def update_url(uuid)
     "/service/#{uuid}/"
   end
-  
+
   def update(uuid, params)
     http_patch(update_url(uuid), params)
   end
@@ -42,7 +42,7 @@ class TutumServices < TutumApi
   def start_url(uuid)
     "/service/#{uuid}/start/"
   end
-  
+
   def start(uuid)
     http_post(start_url(uuid))
   end
@@ -50,18 +50,17 @@ class TutumServices < TutumApi
   def stop_url(uuid)
     "/service/#{uuid}/stop/"
   end
-  
+
   def stop(uuid)
     http_post(stop_url(uuid))
   end
 
- 
   def redeploy_url(uuid)
     "/service/#{uuid}/redeploy/"
   end
-  
-  def redeploy(uuid, params)
-    http_post(redeploy_url(uuid), params)
+
+  def redeploy(uuid)
+    http_post(redeploy_url(uuid))
   end
 
   def terminate_url(uuid)
@@ -71,5 +70,4 @@ class TutumServices < TutumApi
   def terminate(uuid)
     http_delete(terminate_url(uuid))
   end
-
 end

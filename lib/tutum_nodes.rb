@@ -18,9 +18,9 @@ class TutumNodes < TutumApi
   def deploy_url(uuid)
     "/node/#{uuid}/deploy/"
   end
-  
-  def deploy(uuid, params)
-    http_post(deploy_url(uuid), params)
+
+  def deploy(uuid)
+    http_post(deploy_url(uuid))
   end
 
   def terminate_url(uuid)
@@ -30,5 +30,4 @@ class TutumNodes < TutumApi
   def terminate(uuid)
     http_delete(terminate_url(uuid))
   end
-
 end

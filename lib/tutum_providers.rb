@@ -14,5 +14,4 @@ class TutumProviders < TutumApi
   def get(uuid)
     http_get(get_url(uuid))
   end
-
 end
