@@ -14,7 +14,10 @@ class TutumApi
     BASE_API_PATH + '/' + API_VERSION + path
   end
 
-  def http_get(path)
+  def http_get(path, params={})
+    query =  "?" + params.map { |k,v| "#{k}=#{v}"}.join("&")
+    full_path = path
+    full_path += query unless params.empty?
     response = RestClient.get(url(path), headers)
     JSON.parse(response)
   end
