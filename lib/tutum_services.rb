@@ -3,8 +3,8 @@ class TutumServices < TutumApi
     "/service/"
   end
 
-  def list
-    http_get(list_url)
+  def list(params)
+    http_get(list_url, params)
   end
 
   def create_url

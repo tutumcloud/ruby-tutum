@@ -3,8 +3,8 @@ class TutumActions < TutumApi
     "/action/"
   end
 
-  def list
-    http_get(list_url)
+  def list(params)
+    http_get(list_url, params)
   end
 
   def get_url(uuid)
