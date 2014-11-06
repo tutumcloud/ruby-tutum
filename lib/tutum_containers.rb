@@ -3,7 +3,7 @@ class TutumContainers < TutumApi
     "/container/"
   end
 
-  def list(params)
+  def list(params={})
     http_get(list_url, params)
   end
 
