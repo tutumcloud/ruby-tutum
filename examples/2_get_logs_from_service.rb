@@ -15,9 +15,8 @@ service = tutum.services.create({
 
 # Launch the container
 puts service
-uuid = service.parsed_response['uuid']
+uuid = service['uuid']
 
-puts service.parsed_response.inspect
 start = tutum.services.start(uuid)
 puts start.inspect
 
@@ -28,7 +27,6 @@ while(state != "Running") do
   puts "Checking container state"
   get_response = tutum.services.get(uuid)
   state = get_response["state"]
-  puts get_response.inspect
 
   puts state
 end
