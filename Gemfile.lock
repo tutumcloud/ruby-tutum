@@ -10,13 +10,19 @@ GEM
   specs:
     codeclimate-test-reporter (0.4.1)
       simplecov (>= 0.7.1, < 1.0.0)
+    coderay (1.1.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
     json (1.8.1)
+    method_source (0.8.2)
     mime-types (2.4.3)
     multi_json (1.10.1)
     netrc (0.8.0)
     predicated (0.2.6)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rake (10.3.2)
     rest-client (1.7.2)
       mime-types (>= 1.16, < 3.0)
@@ -44,6 +50,7 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    slop (3.6.0)
     wrong (0.7.1)
       diff-lcs (~> 1.2.5)
       predicated (~> 0.2.6)
@@ -56,6 +63,7 @@ PLATFORMS
 
 DEPENDENCIES
   codeclimate-test-reporter (~> 0.4.1)
+  pry (~> 0.10.1)
   rake (~> 10.3.2)
   rspec (~> 3.1.0)
   tutum!
