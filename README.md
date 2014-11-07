@@ -13,7 +13,7 @@ $ gem install tutum-api
 
 ## Authentication
 
-In order to make requests, you must secure your username and [API key](https://dashboard.tutum.co/account/).
+To make requests, you must secure your username and [API key](https://dashboard.tutum.co/account/).
 
 ```ruby
   require 'tutum'
@@ -36,7 +36,7 @@ In order to make requests, you must secure your username and [API key](https://d
 ### List all containers
 
 ```ruby
-  tutum.containers.list
+  tutum.containers.list({})
 ```
 
 ### Get container details
@@ -86,7 +86,7 @@ In order to make requests, you must secure your username and [API key](https://d
 ### List all actions
 
 ```
-  tutum.actions.list
+  tutum.actions.list({})
 ```
 
 ### Get an action by UUID
@@ -101,7 +101,7 @@ In order to make requests, you must secure your username and [API key](https://d
 ### List all providers
 
 ```
-  tutum.providers.list
+  tutum.providers.list({})
 ```
 
 ### Get a provider
@@ -115,7 +115,7 @@ In order to make requests, you must secure your username and [API key](https://d
 ### List all regions
 
 ```
-  tutum.regions.list
+  tutum.regions.list({})
 ```
 
 ### Get an individual region
@@ -133,7 +133,7 @@ TODO: Not implemented on tutum yet
 ### List all node types
 
 ```
-  tutum.node_types.list
+  tutum.node_types.list({})
 ```
 
 ### Get an individual node type
@@ -146,7 +146,7 @@ TODO: Not implemented on tutum yet
 ### List all node clusters
 
 ```
-  node_clusters = tutum.node_clusters.list
+  node_clusters = tutum.node_clusters.list({})
 ```
 
 ### Create a node cluster
@@ -185,7 +185,7 @@ TODO: Not implemented on tutum yet
 ### List all nodes
 
 ```
-tutum.nodes.list
+tutum.nodes.list({})
 ```
 
 ### Get an existing node
@@ -210,13 +210,13 @@ tutum.nodes.terminate(NODE_UUID)
 
 ### List all services
 ```
-tutum.services.list
+tutum.services.list({})
 ```
 
 ### Create a new service
 
 ```
-service = tutum.services.create('tutum/hello-world, :name => "my-new-app", :target_num_containers => 1)
+service = tutum.services.create(:image => "tutum.co/tutum/hello-world", :name => "my-new-app", :target_num_containers => 1)
 ```
 
 ### Get an existing service
@@ -277,8 +277,8 @@ tutum.services.terminate(service_uuid)
 To test locally, you must set two environmental variables.
 
 ```
-$ export TUTUM_USERNAME=your_username
-$ export TUTUM_API_KEY=your_api_key
+$ export TUTUM_USERNAME=<your_username>
+$ export TUTUM_API_KEY=<your_api_key>
 ```
 
 Then, bundle and run the tests.
