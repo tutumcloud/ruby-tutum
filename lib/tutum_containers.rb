@@ -8,7 +8,7 @@ class TutumContainers < TutumApi
   end
 
   def get_url(uuid)
-    "/container/#{uuid}/"
+    "/container/#{stripped_id(uuid)}/"
   end
 
   def get(uuid)
@@ -16,7 +16,7 @@ class TutumContainers < TutumApi
   end
 
   def start_url(uuid)
-    "/container/#{uuid}/start/"
+    "/container/#{stripped_id(uuid)}/start/"
   end
 
   def start(uuid)
@@ -24,7 +24,7 @@ class TutumContainers < TutumApi
   end
 
   def stop_url(uuid)
-    "/container/#{uuid}/stop/"
+    "/container/#{stripped_id(uuid)}/stop/"
   end
 
   def stop(uuid)
@@ -32,7 +32,7 @@ class TutumContainers < TutumApi
   end
 
   def logs_url(uuid)
-    "/container/#{uuid}/logs/"
+    "/container/#{stripped_id(uuid)}/logs/"
   end
 
   def logs(uuid)
@@ -40,7 +40,7 @@ class TutumContainers < TutumApi
   end
 
   def terminate_url(uuid)
-    "/container/#{uuid}/"
+    "/container/#{stripped_id(uuid)}/"
   end
 
   def terminate(uuid)
