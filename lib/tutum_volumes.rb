@@ -1,0 +1,2 @@
+class TutumVolumes < TutumApi
+end

@@ -38,9 +38,10 @@ class TutumApi
   end
 
   # given '/api/v1/service/c4a02992/' or 'c4a02992', returns just the 'c4a02992' part
-  def stripped_id(uuid)
+  def self.stripped_id(uuid)
     uuid.split('/').last
   end
+  def stripped_id(uuid) TutumApi.stripped_id(uuid) ; end
 
   class ApiException < ::RestClient::ExceptionWithResponse
     def initialize(response = nil, initial_response_code = nil, msg = nil)

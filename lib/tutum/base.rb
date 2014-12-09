@@ -3,8 +3,12 @@ class Tutum
   # Base class for Tutum objects
   #
   class Base
-    def initialize(cnxn=nil)
-      @connection = cnxn if cnxn
+    # @param raw [Hash] The attributes of this object
+    def initialize(raw, cnxn=nil)
+      @info         = normalize_response(raw)
+      @uuid         = @info[:uuid]
+      @resource_uri = @info[:resource_uri]
+      @connection   = cnxn if cnxn
     end
 
     # The set of attributes that come for free from create and list.
@@ -19,6 +23,12 @@ class Tutum
       @ext_info || _refresh!
     end
     protected :ext_info
+
+    # Ruby time object for the given field
+    # @return [Time]
+    def info_time(field)
+      Time.parse(info[field]) rescue nil
+    end
 
     # Renew all information from the remote API
     # @return the raw hash of attributes
@@ -41,6 +51,7 @@ class Tutum
     def forget
       remove_instance_variable('@info')     if instance_variable_defined?('@info')
       remove_instance_variable('@ext_info') if instance_variable_defined?('@ext_info')
+      nil
     end
 
     # falls back from provided, to instance-level, to global
@@ -57,6 +68,14 @@ class Tutum
     def normalize_response(raw)
       raw = symbolize_hsh(raw.dup)
       raw[:state] = normalize_state(raw[:state])
+      #
+      #
+      # TODO REMOVE
+
+      raw[:container_envvars] = {}
+      raw[:link_variables]    = {}
+      #
+      #
       raw
     end
 
@@ -65,7 +84,15 @@ class Tutum
         downcase.
         gsub(/[^\w]+/, '_').
         gsub(/partly.*running/, 'partly').
+        gsub(/empty.*cluster/,  'empty').
         to_sym
+    end
+
+    def self.tutumize_state(st)
+      st.to_s.
+        split.map(&:capitalize).join(' ').
+        gsub(/^partly$/, 'Partly Running').
+        gsub(/^empty$/,  'Empty_cluster')
     end
 
     def symbolize_hsh(hsh)
@@ -74,5 +101,19 @@ class Tutum
       end
       hsh
     end
+
+
+    #
+    # These exist so that subclasses can delegate to their subclassed friends.
+    # Like most of us in high school, probably.
+    #
+
+    def _get_service(uuid)      Tutum::Service.get(uuid)   ; end
+    def _get_container(uuid)    Tutum::Container.get(uuid) ; end
+    def _get_volume(uuid)       Tutum::Volume.get(uuid)    ; end
+    def _get_vol_group(uuid)    Tutum::VolGroup.get(uuid)  ; end
+    def _get_node(uuid)         Tutum::Node.get(uuid)      ; end
+    def _get_node_cluster(uuid) Tutum::Node.get(uuid)      ; end
+
   end
 end

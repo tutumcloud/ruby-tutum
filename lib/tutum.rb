@@ -9,6 +9,7 @@ require_relative './tutum_nodes'
 require_relative './tutum_providers'
 require_relative './tutum_regions'
 require_relative './tutum_services'
+require_relative './tutum_volumes'
 
 require_relative './tutum/base'
 require_relative './tutum/spec'
@@ -75,4 +76,14 @@ class Tutum
   def services
     @services ||= TutumServices.new(headers)
   end
+
+  def volumes
+    @volumes ||= TutumVolumes.new(headers)
+  end
+
+  def vol_groups
+    @vol_groups ||= TutumVolumes.new(headers)
+  end
+
+
 end

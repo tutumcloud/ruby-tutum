@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 class Tutum
+  # A volume group is a representation of a group of Docker volumes belonging to
+  # a service and sharing the same container mount point.
+  #
   class VolGroup < Tutum::Base
     # A unique identifier for the volume group generated automatically on creation
     attr_reader :uuid
@@ -7,38 +10,59 @@ class Tutum
     # A unique API endpoint that represents the volume group
     attr_reader :resource_uri
 
-    # @param raw [Hash] The attributes of this volume group
-    def initialize(raw, cnxn=nil)
-      @info         = normalize_response(raw)
-      @uuid         = @info[:uuid]
-      @resource_uri = @info[:resource_uri]
-      @connection   = cnxn if cnxn
+    def forget()
+      @services = @volumes  = nil
+      super
     end
+
+    # The name of the volume group
+    def name()               ; info[:name]                   ; end
+
+    # The resource URI of the node where this volume is located
+    def service_ids()        ; info[:services]            ; end
+
+    # List of the resource URIs of the containers using this volume
+    def volume_ids()         ; info[:volumes]      ; end
+
+    # ===========================================================================
+    #
+    # Relations
+    #
+
+    def services()
+      @services ||= service_ids.map{|id| _get_service(id) }
+    end
+
+    def volumes()
+      @volumes ||= volume_ids.map{|id|   _get_volume(id)  }
+    end
+
+    # ===========================================================================
+    #
+    # Actions
+    #
 
     # @return [Array[Tutum::Volume]] list of returned volume groups
     def self.list(options={}, cnxn=nil)
-      raws = connection(cnxn).volume_groups.list(options)
-      raws.map do |raw|
+      resp = _list(options, cnxn)
+      resp.nil? || resp['objects'].nil? and raise "Unreadable response: #{resp}"
+      resp['objects'].map do |raw|
         self.new(raw, cnxn)
       end
     end
 
-    # Get the Volume object with the given ID
+    # Get the VolGroup object with the given ID
     def self.get(uuid, cnxn=nil)
-      raw = connection(cnxn).volumes.get(uuid)
+      raw = _get(uuid, cnxn)
       self.new(raw, cnxn)
     end
 
-    # The resource URI of the node where this volume is located
-    def node_id()               ; info[:node]            ; end
+    # ===========================================================================
+    #
+    # State
+    #
 
-    # List of the resource URIs of the containers using this volume
-    def container_ids()         ; info[:containers]      ; end
-
-    # The resource URI of the volume group this volume belongs to
-    def vol_group_id()          ; info[:volump_group]    ; end
-
-    # The state of the volume:
+    # The state of the vol group:
     #
     # * :created    The volume object has been created in the node and it is available
     # * :terminated The volume has been deleted in the node.
@@ -50,10 +74,25 @@ class Tutum
     ABSENT_STATES     = [ :terminated ].to_set.freeze       unless defined?(ABSENT_STATES)
     #
     def terminable?()   TERMINABLE_STATES.include?(state) ; end
-    #
     def created?() state == :created ; end
+    #
+    def up?()      created?                      ; end
+    def down?()    absent?                       ; end
     def absent?()  ABSENT_STATES.include?(state) ; end
     def exists?()  not absent? ; end
+
+    # ===========================================================================
+    #
+    # Personal Actions
+    #
+
+    def self._list(params={}, cnxn=nil)
+      connection(cnxn).vol_groups.http_get("/volumegroup/", params)
+    end
+
+    def self._get(uuid, cnxn=nil)
+      connection(cnxn).vol_groups.http_get("/volumegroup/#{TutumApi.stripped_id(uuid)}/")
+    end
 
   end
 end
