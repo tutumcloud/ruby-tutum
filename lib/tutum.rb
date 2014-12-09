@@ -82,7 +82,7 @@ class Tutum
   end
 
   def vol_groups
-    @vol_groups ||= TutumVolumes.new(headers)
+    @vol_groups ||= TutumVolGroups.new(headers)
   end
 
 
