@@ -62,6 +62,6 @@ class TutumApi
   def execute(query)
     RestClient::Request.execute(query)
   rescue RestClient::Exception => err
-    raise ApiException.new(err.response, err.http_code, err.message)
+    raise ApiException.new(err.response, err.http_code, err.message), err.backtrace
   end
 end

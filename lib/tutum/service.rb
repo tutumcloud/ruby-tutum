@@ -273,6 +273,10 @@ class Tutum
     # Mechanics
     #
 
+    def self._get(uuid, cnxn=nil)
+      connection(cnxn).services.get(uuid)
+    end
+
     def normalize_response(raw)
       raw = super(raw)
       #

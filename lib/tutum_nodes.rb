@@ -8,7 +8,7 @@ class TutumNodes < TutumApi
   end
 
   def get_url(uuid)
-    "/node/#{uuid}/"
+    "/node/#{stripped_id(uuid)}/"
   end
 
   def get(uuid)
@@ -16,7 +16,7 @@ class TutumNodes < TutumApi
   end
 
   def deploy_url(uuid)
-    "/node/#{uuid}/deploy/"
+    "/node/#{stripped_id(uuid)}/deploy/"
   end
 
   def deploy(uuid)
@@ -24,7 +24,7 @@ class TutumNodes < TutumApi
   end
 
   def terminate_url(uuid)
-    "/node/#{uuid}/"
+    "/node/#{stripped_id(uuid)}/"
   end
 
   def terminate(uuid)

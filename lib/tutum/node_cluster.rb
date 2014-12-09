@@ -38,7 +38,7 @@ class Tutum
     def destroyed_at()       ; info_time(:destroyed_datetime) ; end
 
     # A list of resource URIs of the Node objects on the node cluster
-    def node_ids()           ; info[:nodes]              ; end
+    def node_ids()           ; ext_info[:nodes]          ; end
 
     # The desired number of nodes for the node cluster
     def target_num_nodes()   ; info[:target_num_nodes]   ; end
@@ -141,5 +141,16 @@ class Tutum
     def down?()       absent?   || (state == :init)      ; end
     def absent?()     ABSENT_STATES.include?(state)      ; end
     def exists?()     not absent?                        ; end
+
+
+    # ===========================================================================
+    #
+    # Mechanics
+    #
+
+    def self._get(uuid, cnxn=nil)
+      connection(cnxn).node_clusters.get(uuid)
+    end
+
   end
 end

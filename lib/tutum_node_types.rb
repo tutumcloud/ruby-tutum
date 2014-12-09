@@ -8,7 +8,7 @@ class TutumNodeTypes < TutumApi
   end
 
   def get_url(uuid)
-    "/nodetype/#{uuid}/"
+    "/nodetype/#{stripped_id(uuid)}/"
   end
 
   def get(uuid)

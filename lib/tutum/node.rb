@@ -146,5 +146,15 @@ class Tutum
     def down?()       DOWN_STATES.include?(state)       ; end
     def absent?()     ABSENT_STATES.include?(state)     ; end
     def exists?()     not absent?                       ; end
+
+    # ===========================================================================
+    #
+    # Mechanics
+    #
+
+    def self._get(uuid, cnxn=nil)
+      connection(cnxn).nodes.get(uuid)
+    end
+
   end
 end

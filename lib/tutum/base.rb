@@ -33,7 +33,7 @@ class Tutum
     # Renew all information from the remote API
     # @return the raw hash of attributes
     def _refresh!
-      raw = connection.services.get(uuid)
+      raw = self.class._get(uuid)
       @info = @ext_info = normalize_response(raw)
     end
     protected :_refresh!
@@ -108,12 +108,12 @@ class Tutum
     # Like most of us in high school, probably.
     #
 
-    def _get_service(uuid)      Tutum::Service.get(uuid)   ; end
-    def _get_container(uuid)    Tutum::Container.get(uuid) ; end
-    def _get_volume(uuid)       Tutum::Volume.get(uuid)    ; end
-    def _get_vol_group(uuid)    Tutum::VolGroup.get(uuid)  ; end
-    def _get_node(uuid)         Tutum::Node.get(uuid)      ; end
-    def _get_node_cluster(uuid) Tutum::Node.get(uuid)      ; end
+    def _get_service(uuid)      Tutum::Service.get(uuid)     ; end
+    def _get_container(uuid)    Tutum::Container.get(uuid)   ; end
+    def _get_volume(uuid)       Tutum::Volume.get(uuid)      ; end
+    def _get_vol_group(uuid)    Tutum::VolGroup.get(uuid)    ; end
+    def _get_node(uuid)         Tutum::Node.get(uuid)        ; end
+    def _get_node_cluster(uuid) Tutum::NodeCluster.get(uuid) ; end
 
   end
 end

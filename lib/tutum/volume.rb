@@ -96,5 +96,10 @@ class Tutum
       connection(cnxn).volumes.http_get("/volume/#{TutumApi.stripped_id(uuid)}/")
     end
 
+    # ===========================================================================
+    #
+    # Mechanics
+    #
+
   end
 end
