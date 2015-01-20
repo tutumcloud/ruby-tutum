@@ -33,6 +33,10 @@ describe TutumServices do
     expect(subject.stop_url("TEST")).to eq("/service/TEST/stop/")
   end
 
+  it "can get logs" do
+    expect(subject.logs_url("TEST")).to eq("/service/TEST/logs/")
+  end
+
   it "can terminate" do
     expect(subject.terminate_url("TEST")).to eq("/service/TEST/")
   end
