@@ -28,7 +28,7 @@ class TutumServices < TutumApi
   end
 
   def logs(uuid)
-    http_get(get_url(uuid))
+    http_get(logs_url(uuid))
   end
 
   def update_url(uuid)
