@@ -16,7 +16,7 @@ class TutumServices < TutumApi
   end
 
   def get_url(uuid)
-    "/service/#{uuid}/"
+    "/service/#{stripped_id(uuid)}/"
   end
 
   def get(uuid)
@@ -24,7 +24,7 @@ class TutumServices < TutumApi
   end
 
   def logs_url(uuid)
-    "/service/#{uuid}/"
+    "/service/#{stripped_id(uuid)}/"
   end
 
   def logs(uuid)
@@ -32,7 +32,7 @@ class TutumServices < TutumApi
   end
 
   def update_url(uuid)
-    "/service/#{uuid}/"
+    "/service/#{stripped_id(uuid)}/"
   end
 
   def update(uuid, params)
@@ -40,7 +40,7 @@ class TutumServices < TutumApi
   end
 
   def start_url(uuid)
-    "/service/#{uuid}/start/"
+    "/service/#{stripped_id(uuid)}/start/"
   end
 
   def start(uuid)
@@ -48,7 +48,7 @@ class TutumServices < TutumApi
   end
 
   def stop_url(uuid)
-    "/service/#{uuid}/stop/"
+    "/service/#{stripped_id(uuid)}/stop/"
   end
 
   def stop(uuid)
@@ -56,7 +56,7 @@ class TutumServices < TutumApi
   end
 
   def redeploy_url(uuid)
-    "/service/#{uuid}/redeploy/"
+    "/service/#{stripped_id(uuid)}/redeploy/"
   end
 
   def redeploy(uuid)
@@ -64,7 +64,7 @@ class TutumServices < TutumApi
   end
 
   def terminate_url(uuid)
-    "/service/#{uuid}/"
+    "/service/#{stripped_id(uuid)}/"
   end
 
   def terminate(uuid)

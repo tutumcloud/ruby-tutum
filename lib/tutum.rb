@@ -1,3 +1,4 @@
+require 'set'
 require_relative './tutum_api'
 
 require_relative './tutum_actions'
@@ -8,6 +9,14 @@ require_relative './tutum_nodes'
 require_relative './tutum_providers'
 require_relative './tutum_regions'
 require_relative './tutum_services'
+require_relative './tutum_volumes'
+
+require_relative './tutum/base'
+require_relative './tutum/spec'
+require_relative './tutum/service'
+require_relative './tutum/container'
+require_relative './tutum/node'
+require_relative './tutum/volume'
 
 class Tutum
   attr_reader :username, :api_key
@@ -24,6 +33,17 @@ class Tutum
       'Content-Type' => 'application/json'
     }
   end
+
+  def self.authenticate!(username, api_key)
+    @connection = ::Tutum.new(username, api_key)
+  end
+
+  # Used for a globally shared connection; or provide your own
+  #
+  def self.connection
+    @connection or raise "Must call #{self.name}#authenticate! or provide a ::Tutum object."
+  end
+
 
   def actions
     @actions ||= TutumContainers.new(headers)
@@ -56,4 +76,14 @@ class Tutum
   def services
     @services ||= TutumServices.new(headers)
   end
+
+  def volumes
+    @volumes ||= TutumVolumes.new(headers)
+  end
+
+  def vol_groups
+    @vol_groups ||= TutumVolGroups.new(headers)
+  end
+
+
 end

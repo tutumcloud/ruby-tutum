@@ -8,7 +8,7 @@ class TutumActions < TutumApi
   end
 
   def get_url(uuid)
-    "/action/#{uuid}/"
+    "/action/#{stripped_id(uuid)}/"
   end
 
   def get(uuid)

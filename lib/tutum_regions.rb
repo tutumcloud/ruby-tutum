@@ -8,7 +8,7 @@ class TutumRegions < TutumApi
   end
 
   def get_url(uuid)
-    "/region/#{uuid}/"
+    "/region/#{stripped_id(uuid)}/"
   end
 
   def get(uuid)

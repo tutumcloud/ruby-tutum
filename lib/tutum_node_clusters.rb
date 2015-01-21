@@ -16,7 +16,7 @@ class TutumNodeClusters < TutumApi
   end
 
   def get_url(uuid)
-    "/nodecluster/#{uuid}/"
+    "/nodecluster/#{stripped_id(uuid)}/"
   end
 
   def get(uuid)
@@ -24,7 +24,7 @@ class TutumNodeClusters < TutumApi
   end
 
   def update_url(uuid)
-    "/nodecluster/#{uuid}/"
+    "/nodecluster/#{stripped_id(uuid)}/"
   end
 
   def update(uuid, params)
@@ -32,7 +32,7 @@ class TutumNodeClusters < TutumApi
   end
 
   def deploy_url(uuid)
-    "/nodecluster/#{uuid}/deploy/"
+    "/nodecluster/#{stripped_id(uuid)}/deploy/"
   end
 
   def deploy(uuid)
@@ -40,11 +40,10 @@ class TutumNodeClusters < TutumApi
   end
 
   def terminate_url(uuid)
-    "/nodecluster/#{uuid}/"
+    "/nodecluster/#{stripped_id(uuid)}/"
   end
 
   def terminate(uuid)
     http_delete(terminate_url(uuid))
   end
 end
-
