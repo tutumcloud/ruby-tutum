@@ -8,7 +8,7 @@ This library implements [Tutum's API](https://docs.tutum.co/v2/api/). Tutum is a
 ##Installation
 
 ```
-$ gem install tutum-api
+$ gem install tutum
 ```
 
 ## Authentication
