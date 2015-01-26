@@ -24,7 +24,7 @@ class TutumServices < TutumApi
   end
 
   def logs_url(uuid)
-    "/service/#{uuid}/"
+    "/service/#{uuid}/logs/"
   end
 
   def logs(uuid)
