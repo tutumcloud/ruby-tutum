@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tutum (0.2.2)
+    tutum (0.2.5)
       json (~> 1.8.1)
       rest-client (~> 1.7.2)
 
@@ -13,11 +13,11 @@ GEM
     coderay (1.1.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
-    json (1.8.1)
+    json (1.8.2)
     method_source (0.8.2)
     mime-types (2.4.3)
     multi_json (1.10.1)
-    netrc (0.8.0)
+    netrc (0.10.2)
     predicated (0.2.6)
     pry (0.10.1)
       coderay (~> 1.1.0)

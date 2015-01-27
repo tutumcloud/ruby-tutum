@@ -1,9 +1,10 @@
 # encoding: UTF-8
 $LOAD_PATH.push File.expand_path('../lib', __FILE__)
+require "version"
 
 Gem::Specification.new do |s|
   s.name          = 'tutum'
-  s.version       = '0.2.5'
+  s.version       = Tutum::VERSION
   s.platform      = Gem::Platform::RUBY
   s.authors       = ['Josie Wright', 'Martyn Garcia', 'Mikkel Garcia']
   s.email         = ['jozwright@gmail.com', 'martyn@255bits.com', 'mikkel@255bits.com']
