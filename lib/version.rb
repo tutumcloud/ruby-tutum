@@ -1,3 +1,3 @@
-module Tutum
+class Tutum
   VERSION = "0.2.5"
 end
