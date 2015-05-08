@@ -26,7 +26,7 @@ class Tutum
   end
 
   def actions
-    @actions ||= TutumContainers.new(headers)
+    @actions ||= TutumActions.new(headers)
   end
 
   def containers
@@ -51,6 +51,10 @@ class Tutum
 
   def providers
     @providers ||= TutumProviders.new(headers)
+  end
+
+  def regions
+    @regions ||= TutumRegions.new(headers)
   end
 
   def services
