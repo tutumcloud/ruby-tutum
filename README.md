@@ -17,7 +17,14 @@ To make requests, you must secure your username and [API key](https://dashboard.
 
 ```ruby
   require 'tutum'
-  session = Tutum.new(username, api_key)
+  session = Tutum.new(username: username, api_key: api_key)
+```
+
+or by using [API Roles](https://support.tutum.co/support/solutions/articles/5000524639).
+
+```ruby
+  require 'tutum'
+  session = Tutum.new(tutum_auth: tutum_auth)
 ```
 
 ## Containers
