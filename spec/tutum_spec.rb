@@ -29,8 +29,8 @@ describe Tutum do
       expect(subject.username).to eq(test_username)
       expect(subject.api_key).to eq(test_api_key)
     end
-
   end
+
 
   describe "New initialize api with tutum_auth" do
 
@@ -87,8 +87,12 @@ describe Tutum do
       expect(subject.regions).to be_a TutumRegions
     end
 
-    it "#services services API" do
+    it "#services calls the services API" do
       expect(subject.services).to be_a TutumServices
+    end
+  
+    it "#stacks calls the stacks API" do
+      expect(subject.stacks).to be_a TutumStacks
     end
   end
 end

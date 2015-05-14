@@ -8,6 +8,7 @@ require_relative './tutum_nodes'
 require_relative './tutum_providers'
 require_relative './tutum_regions'
 require_relative './tutum_services'
+require_relative './tutum_stacks'
 
 class Tutum
   attr_reader :username, :api_key, :tutum_auth
@@ -63,6 +64,10 @@ class Tutum
     @services ||= TutumServices.new(headers)
   end
 
+  def stacks
+    @stacks ||= TutumStacks.new(headers)
+  end
+
   private
 
   def extract_options!(args)
@@ -75,5 +80,4 @@ class Tutum
     end
     options
   end
-
 end

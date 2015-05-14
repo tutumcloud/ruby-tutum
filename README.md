@@ -279,6 +279,108 @@ service_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
 
 tutum.services.terminate(service_uuid)
 ```
+
+## Stacks
+
+### List all stacks
+```
+tutum.stacks.list({})
+```
+
+### Create a new stack
+
+```
+stack = tutum.stacks.create(name: "my-new-stack",
+  services: [
+    {
+      name: "hello-word",
+      image: "tutum/hello-world",
+      target_num_containers: 2,
+      linked_to_service: [
+        {
+          to_service: "database",
+          name: "DB"
+        }
+      ]
+    },
+    {
+      name: "database",
+      image: "tutum/mysql"
+    }
+  ]
+})
+```
+
+### Get an existing stack
+
+```
+stack_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+stack = tutum.stacks.get(stack_uuid)
+```
+
+### Export an existing stack
+
+```
+stack_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.stacks.export(stack_uuid)
+```
+
+### Update an existing stack
+
+```
+stack_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.stacks.update(stack_uuid, services: [
+    {
+      name: "hello-word",
+      image: "tutum/hello-world",
+      target_num_containers: 2,
+      linked_to_service: [
+        {
+          to_service: "database",
+          name: "DB"
+        }
+      ]
+    },
+    {
+      name: "database",
+      image: "tutum/mysql"
+    }
+  ]
+})
+```
+
+### Start a stack
+
+```
+stack_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.stacks.start(stack_uuid)
+```
+
+### Stop a stack
+```
+stack_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.stacks.stop(stack_uuid)
+```
+
+### Redeploy a stack
+```
+stack_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.stacks.redeploy(stack_uuid)
+```
+
+### Terminate a stack
+```
+stack_uuid = "7eaf7fff-882c-4f3d-9a8f-a22317ac00ce"
+
+tutum.stacks.terminate(stack_uuid)
+```
+
 ##Testing
 
 To test locally, you must set two environmental variables.
