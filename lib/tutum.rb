@@ -10,16 +10,18 @@ require_relative './tutum_regions'
 require_relative './tutum_services'
 
 class Tutum
-  attr_reader :username, :api_key
+  attr_reader :username, :api_key, :tutum_auth
 
-  def initialize(username, api_key)
-    @username = username
-    @api_key = api_key
+  def initialize(*options)
+    @options = extract_options! options
+    @username = @options[:username]
+    @api_key = @options[:api_key]
+    @tutum_auth = @options[:tutum_auth]
   end
 
   def headers
     {
-      'Authorization' => "ApiKey #{@username}:#{@api_key}",
+      'Authorization' => @tutum_auth ? @tutum_auth : "ApiKey #{@username}:#{@api_key}",
       'Accept' => 'application/json',
       'Content-Type' => 'application/json'
     }
@@ -60,4 +62,18 @@ class Tutum
   def services
     @services ||= TutumServices.new(headers)
   end
+
+  private
+
+  def extract_options!(args)
+    options = {}
+    if args[0].class == String
+      options[:username] = args[0]
+      options[:api_key] = args[1]
+    else
+      options = args[0]
+    end
+    options
+  end
+
 end
