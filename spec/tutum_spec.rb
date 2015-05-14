@@ -2,7 +2,7 @@ require_relative './spec_helper'
 
 test_username = ENV['TUTUM_USERNAME']
 test_api_key = ENV['TUTUM_API_KEY']
-test_tutum_auth = "ApiKey #{test_username}:#{test_api_key}" #best way to handle this?
+test_tutum_auth = ENV['TUTUM_AUTH'] || "ApiKey #{test_username}:#{test_api_key}" #best way to handle this?
 
 describe Tutum do
 
@@ -43,8 +43,7 @@ describe Tutum do
     end
 
     it "compiles headers" do
-      expect(subject.headers["Authorization"].length).to be > 1
-      expect(subject.headers["Accept"]).to eq("application/json")
+      expect(subject.headers["Authorization"]).to eq(test_tutum_auth)
     end
 
   end
