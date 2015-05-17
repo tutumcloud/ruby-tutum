@@ -407,6 +407,8 @@ MIT
 
 ### Changelog
 
+v0.2.7 Stacks api and api role support
+v0.2.6 Bug fixes
 v0.2.0 Support for tutum 2.0 + new example
 v0.1.1 Fix runtime dependency
 v0.1.0 Initial release
