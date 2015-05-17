@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description   = 'Provides HTTP functionality wrapped in a nice ruby interface.'
   s.files         = Dir.glob('lib/*.rb')
   s.license       = 'MIT'
-  s.date          = '2014-11-04'
+  s.date          = '2015-05-17'
 
   s.require_paths = ['lib']
 
