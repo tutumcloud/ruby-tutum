@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/tutumcloud/ruby-tutum.svg)](https://travis-ci.org/tutumcloud/ruby-tutum)
-[![Gem Version](https://badge.fury.io/rb/ruby-tutum.svg)](http://badge.fury.io/rb/ruby-tutum)
+[![Gem Version](https://badge.fury.io/rb/tutum.svg)](http://badge.fury.io/rb/tutum)
 
 ## Introduction
 
