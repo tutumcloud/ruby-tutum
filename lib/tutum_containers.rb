@@ -46,4 +46,8 @@ class TutumContainers < TutumApi
   def terminate(uuid)
     http_terminate(terminate_url(uuid))
   end
+  
+  def redeploy(uuid)
+    http_post("/container/#{uuid}/redeploy/")
+  end
 end
