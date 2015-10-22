@@ -1,20 +1,35 @@
 require_relative './spec_helper'
 
-test_username = ENV['TUTUM_USERNAME']
-test_api_key = ENV['TUTUM_API_KEY']
+test_username = ENV['TUTUM_USERNAME'] || "tutum_username"
+test_api_key = ENV['TUTUM_API_KEY'] || "tutum_api_key"
 test_tutum_auth = ENV['TUTUM_AUTH'] || "ApiKey #{test_username}:#{test_api_key}" #best way to handle this?
+json_opts = {}
 
 describe Tutum do
 
   describe "Existing initialize api" do
 
     subject do
-      Tutum.new(test_username, test_api_key)
+      Tutum.new(test_username, test_api_key, json_opts)
     end
 
     it "has a username and apikey" do
       expect(subject.username).to eq(test_username)
       expect(subject.api_key).to eq(test_api_key)
+    end
+
+  end
+
+  describe "Existing initialize api" do
+
+    subject do
+      Tutum.new(test_username, test_api_key, json_opts)
+    end
+
+    it "has a username and apikey" do
+      expect(subject.username).to eq(test_username)
+      expect(subject.api_key).to eq(test_api_key)
+      expect(subject.json_opts).to eq(json_opts)
     end
 
   end
@@ -31,15 +46,28 @@ describe Tutum do
     end
   end
 
+  describe "New initialize api" do
+
+    subject do
+      Tutum.new(username: test_username, api_key: test_api_key, json_opts: json_opts)
+    end
+
+    it "has a username and apikey" do
+      expect(subject.username).to eq(test_username)
+      expect(subject.api_key).to eq(test_api_key)
+      expect(subject.json_opts).to eq(json_opts)
+    end
+  end
 
   describe "New initialize api with tutum_auth" do
 
     subject do
-      Tutum.new(tutum_auth: test_tutum_auth)
+      Tutum.new(tutum_auth: test_tutum_auth, json_opts: json_opts)
     end
 
     it "has a tutum_auth" do
       expect(subject.tutum_auth).to eq(test_tutum_auth)
+      expect(subject.json_opts).to eq(json_opts)
     end
 
     it "compiles headers" do

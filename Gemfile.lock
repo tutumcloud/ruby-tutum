@@ -8,9 +8,12 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.3.8)
     codeclimate-test-reporter (0.4.1)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
     domain_name (0.5.24)
@@ -49,6 +52,7 @@ GEM
       sexp_processor (~> 4.0)
     ruby_parser (3.6.3)
       sexp_processor (~> 4.1)
+    safe_yaml (1.0.4)
     sexp_processor (4.4.4)
     simplecov (0.9.1)
       docile (~> 1.1.0)
@@ -59,6 +63,9 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
+    webmock (1.21.0)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
     wrong (0.7.1)
       diff-lcs (~> 1.2.5)
       predicated (~> 0.2.6)
@@ -75,4 +82,8 @@ DEPENDENCIES
   rake (~> 10.3.2)
   rspec (~> 3.1.0)
   tutum!
+  webmock (~> 1.21)
   wrong (~> 0.7.1)
+
+BUNDLED WITH
+   1.10.6
