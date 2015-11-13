@@ -27,6 +27,12 @@ or by using [API Roles](https://support.tutum.co/support/solutions/articles/5000
   session = Tutum.new(tutum_auth: tutum_auth)
 ```
 
+you can specify extra json options, such as such switching on `:symbolize_name` for all response hashes.
+
+```ruby
+  session = Tutum.new(username: username, api_key: api_key, json_opts: {:symbolize_names => true}
+```
+
 ## Containers
 
 ### Create a new container
