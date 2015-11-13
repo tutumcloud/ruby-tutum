@@ -10,17 +10,18 @@ describe Tutum do
   describe "Existing initialize api" do
 
     subject do
-      Tutum.new(test_username, test_api_key, json_opts)
+      Tutum.new(test_username, test_api_key)
     end
 
     it "has a username and apikey" do
       expect(subject.username).to eq(test_username)
       expect(subject.api_key).to eq(test_api_key)
+      expect(subject.json_opts).to be_nil
     end
 
   end
 
-  describe "Existing initialize api" do
+  describe "Existing initialize api with json_opts" do
 
     subject do
       Tutum.new(test_username, test_api_key, json_opts)
@@ -43,10 +44,11 @@ describe Tutum do
     it "has a username and apikey" do
       expect(subject.username).to eq(test_username)
       expect(subject.api_key).to eq(test_api_key)
+      expect(subject.json_opts).to be_nil
     end
   end
 
-  describe "New initialize api" do
+  describe "New initialize api with json_opts" do
 
     subject do
       Tutum.new(username: test_username, api_key: test_api_key, json_opts: json_opts)
