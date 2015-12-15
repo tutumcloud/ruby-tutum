@@ -23,7 +23,7 @@ class Tutum
 
   def headers
     {
-      'Authorization' => @tutum_auth ? @tutum_auth : "ApiKey #{@username}:#{@api_key}",
+      'Authorization' => authorization_header,
       'Accept' => 'application/json',
       'Content-Type' => 'application/json'
     }
@@ -70,6 +70,10 @@ class Tutum
   end
 
   private
+
+  def authorization_header
+    @tutum_auth ? @tutum_auth : "Basic #{Base64.strict_encode64(@username + ':' + @api_key)}"
+  end
 
   def extract_options!(args)
     options = {}
