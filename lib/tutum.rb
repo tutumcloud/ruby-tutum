@@ -1,3 +1,5 @@
+require 'base64'
+
 require_relative './tutum_api'
 
 require_relative './tutum_actions'
