@@ -1,8 +1,9 @@
 require_relative './spec_helper'
+require 'base64'
 
 test_username = ENV['TUTUM_USERNAME'] || "tutum_username"
 test_api_key = ENV['TUTUM_API_KEY'] || "tutum_api_key"
-test_tutum_auth = ENV['TUTUM_AUTH'] || "ApiKey #{test_username}:#{test_api_key}" #best way to handle this?
+test_tutum_auth = ENV['TUTUM_AUTH'] || "Basic #{Base64.strict_encode64(test_username + ':' + test_api_key)}"
 json_opts = {}
 
 describe Tutum do
@@ -58,6 +59,10 @@ describe Tutum do
       expect(subject.username).to eq(test_username)
       expect(subject.api_key).to eq(test_api_key)
       expect(subject.json_opts).to eq(json_opts)
+    end
+
+    it "uses basic auth from username and apikey" do
+      expect(subject.headers["Authorization"]).to eq(test_tutum_auth)
     end
   end
 
